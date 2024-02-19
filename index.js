@@ -10,9 +10,15 @@ app.use(cors());
 
 app.get('/', async (req, res) => res.send('Hello World!'));
 app.post('/webhook', async (req, res) => {
-	const body = req.body;
+	const { account } = req.body;
+	let port;
+	if (!account) port = 8080;
+	else if (account === 'wolied') port = 8084;
+	else if (account === 'mosfik') port = 8080;
+	else if (account === 'user1') port = 8081;
+
 	try {
-		axios.post('http://178.16.139.13:8084/order/webhook', body);
+		axios.post(`http://178.16.139.13:${port}/order/webhook`, body);
 		res.send('Webhook sent');
 	} catch (error) {
 		console.error(error);
