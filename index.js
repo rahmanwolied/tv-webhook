@@ -10,7 +10,8 @@ app.use(cors());
 
 app.get('/', async (req, res) => res.send('Hello World!'));
 app.post('/webhook', async (req, res) => {
-	const { account } = req.body;
+	const body = req.body;
+	const account = body.account;
 	let port;
 	if (!account) port = 8080;
 	else if (account === 'wolied') port = 8084;
