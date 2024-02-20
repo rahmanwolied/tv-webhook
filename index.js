@@ -19,7 +19,7 @@ app.post('/webhook', async (req, res) => {
 
 	try {
 		axios.post(`http://178.16.139.13:${port}/order/webhook`, body);
-		res.send('Webhook sent');
+		res.send('Webhook sent bro');
 	} catch (error) {
 		console.error(error);
 		res.send('Error sending webhook');
