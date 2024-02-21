@@ -19,8 +19,9 @@ app.post('/webhook', async (req, res) => {
 	else if (account === 'user1') port = 8081;
 
 	try {
-		axios.post(`http://178.16.139.13:${port}/order/webhook`, body);
-		res.send('Webhook sent bro');
+		const response = await axios.post(`http://178.16.139.13:${port}/order/webhook`, body);
+		console.log(response.data);
+		res.json(response.data);
 	} catch (error) {
 		console.error(error);
 		res.send('Error sending webhook');
